@@ -1,16 +1,54 @@
-# React + Vite
+# MiCotizador
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App SaaS de cotizaciones B2B para climatización.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Frontend**: React + Vite + Tailwind CSS
+- **Backend**: Supabase (PostgreSQL + Auth + API)
+- **Deploy**: Vercel
 
-## React Compiler
+## Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Supabase
 
-## Expanding the ESLint configuration
+1. Crea una cuenta en https://supabase.com
+2. Crea un nuevo proyecto
+3. Ve a **SQL Editor** y pega el contenido de `supabase-schema.sql`, luego ejecútalo
+4. Ve a **Settings > API** y copia:
+   - `Project URL` → `VITE_SUPABASE_URL`
+   - `anon public key` → `VITE_SUPABASE_ANON_KEY`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2. Variables de entorno
+
+Crea un archivo `.env` (o renombra `.env.example`) en la raíz:
+
+```
+VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
+VITE_SUPABASE_ANON_KEY=tu-anon-key
+```
+
+### 3. Local dev
+
+```bash
+npm install
+npm run dev
+```
+
+### 4. Deploy en Vercel
+
+1. Ve a https://vercel.com
+2. Conecta tu repo de GitHub `IsJotaK/micotizador`
+3. Agrega las mismas variables de entorno (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`)
+4. Deploy automático
+
+## Funcionalidades
+
+- Login / registro de usuarios
+- Configuración de empresa
+- CRUD de productos (con datos precargados)
+- CRUD de clientes frecuentes
+- Cotizaciones en split view con vista previa en vivo
+- Vista previa profesional imprimible
+- Enviar por email / copiar al portapapeles
+- Multi-tenant (cada empresa ve solo sus datos)
